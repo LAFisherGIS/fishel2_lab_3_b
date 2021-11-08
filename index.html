@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Pierce County Census Tract Level Vacancy Rates</title>
+		<meta charset="utf-8">
+		<meta name="author" content="Liam Fisher">
+		<meta name="description" content="A chloropleth map displaying vacancy rates in Pierce County Washington.">
+		<html lang="en-US">
+		<link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
+   	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	  <script src="scripts.js"></script>
+		<script src="Data/Pierce_CT.js"></script>
+	</head>
+	<body>
+    <div class="headerbar">
+      <!-- The below is a component in the form of lightmode/darkmode selector integrated into this website. Thanks to Rafael Morais for the reference implementation. https://rafael.no/blog/implementing-dark-mode-without-javascript/ https://codepen.io/rafaelsnts/pen/BEzZoX-->
+		    <input type="checkbox" id="lightordark">
+		    <label for="lightordark" class="modeselect">Lightmode/Darkmode</label>
+      <!-- End of lightmode/darkmode HTML-side controls. -->
+		    <div class="pagecontent">
+					<h3>Pierce County Census Tract Level Vacancy Rates</h3>
+					<p>This map provides for the quick lookup of census tract level property vacancy rates throughout Pierce County in Washington, enabling the quick location of census tracts where one might actually be able to find a place to rent, versus ones that are currently packed. Census tracts have been classified into quintiles of equal size according to their vacancy rates.</p>
+        <div id="map"></div>
+		    </div>
+		</div>
+	</body>
+</html>

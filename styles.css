@@ -1,0 +1,195 @@
+/*
+Opening Statement -. Thanks to Rafael Morais (https://rafael.no/blog/implementing-dark-mode-without-javascript/ https://codepen.io/rafaelsnts/pen/BEzZoX) for the reference implementation for javascript-free lightmode/darkmode which this is derived in part from. Even if javascript actually is being used in the website in the end.
+*/
+
+/*
+Mode Selector Styling - This section defines the aesthetic qualities of the checkbox which toggles lightmode and darkmode - the fact that it is only visible as text, and the fact that the color of the text changes depending on the current mode.
+*/
+
+#lightordark{
+  visibility: hidden;
+}
+
+.modeselect{
+  cursor: pointer;
+  color: #D3D3D3;
+  font-weight: bold;
+  display: inline-block;
+  padding-right: 4em;
+  font-size: 1em;
+}
+
+.modeselect:hover{
+  color: #000000;
+}
+
+#lightordark:checked ~ .modeselect{
+  color: #FFFF00;
+}
+
+#lightordark:checked ~ .modeselect:hover{
+  color: #FFFFFF;
+}
+
+/*
+ Color Variations - This section establishes the manner in which the content of the page at large is altered when the checkbox is ticked defining the variables for the implementation as well as the conditions under which they change and what they influence.
+ */
+
+.pagecontent{
+  --backgroundchroma: #FFFFFF;
+  --textchroma: #000000;
+  background-color: var(--backgroundchroma);
+  color: var(--textchroma);
+  padding-bottom: 3em;
+}
+
+#lightordark:checked ~ .pagecontent{
+  --backgroundchroma: #000000;
+  --textchroma: #FFFFFF;
+}
+
+/*Thanks to parsethis, Robert Kajic, Thriggle, and MySchizoBuddy for guidance on styling popups https://stackoverflow.com/questions/12606141/how-would-i-customise-the-look-and-feel-of-the-leaflet-popup*/
+
+
+div.leaflet-popup-content-wrapper {
+  background-color: var(--backgroundchroma);
+  color: var(--textchroma);
+}
+
+div.leaflet-popup-tip {
+  background-color: var(--backgroundchroma)
+}
+
+/*Thanks to juanignaciosl for guidance on styling zoom controls https://stackoverflow.com/questions/22926512/customize-zoom-in-out-button-in-leaflet-js*/
+
+.leaflet-control-container .leaflet-top .leaflet-control-zoom a.leaflet-control-zoom-in {
+  background-color: var(--backgroundchroma);
+  color: var(--textchroma);
+}
+
+.leaflet-control-container .leaflet-top .leaflet-control-zoom a.leaflet-control-zoom-out {
+  background-color: var(--backgroundchroma);
+  color: var(--textchroma);
+}
+
+#informational {
+  color: var(--textchroma);
+}
+
+/*
+Fixed Elements This section determines all characteristics of the page not altered by or involved in the lightmode/darkmode selection. All fixed elements of the website live here.
+*/
+
+body{
+  position: relative;
+  height: auto;
+  padding: 0;
+  margin: 0em;
+  font-family: 'Arial', sans-serif;
+  font-weight: 200
+}
+
+.headerbar{
+  background-color: #2C2F33;
+  margin-top: 0em;
+  padding-top: 0.5em;
+}
+
+.headerbar label{
+  display: inline-block;
+}
+
+.headerbar h2{
+  display: inline-block;
+  color: #F6F6F6;
+  font-size: 1.5em;
+  padding-right: 2em;
+  text-align: center;
+}
+
+.headerbar h3{
+  display: inline-block;
+  color: #F6F6F6;
+  font-size: 1em;
+  padding-right: 2em;
+  text-align: center;
+}
+
+.pagecontent{
+  padding-top: 0.5em;
+  text-align: center;
+}
+
+/* This variable color must, necessarily, be located outside of the appropriate section to preserve its color*/
+.pagecontent h3{
+  color: var(--textchroma);
+}
+
+.pagecontent h2 {
+  color: var(--textchroma);
+}
+
+h3{
+  font-size: 1em;
+}
+
+p{
+  margin-left: 1em;
+  margin-right: 1em;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: left;
+}
+
+
+div#references{
+  background-color: red;
+  color: white;
+  padding: 1em;
+}
+
+
+a:link{
+  color: gray;
+}
+
+a:visited{
+  color: slategray;
+}
+
+a:hover{
+  color: darkslategray;
+}
+
+a:active{
+  color: black;
+}
+
+#map {
+  position: absolute;
+  width: 99.1vw;
+  height: 100vh;
+}
+
+.info {
+    padding: 2em 2em;
+    font: 1em/1.5em Arial, Helvetica, sans-serif;
+    background: var(--backgroundchroma);
+    box-shadow: 0 0 1em rgba(0,0,0,0.2);
+    border-radius: 2em;
+}
+.info h4 {
+    margin: 0 0 1em;
+    color: var(--textchroma);
+}
+
+.legend {
+    line-height: 1em;
+}
+.legend i {
+    width: 1em;
+    height: 1em;
+    float: left;
+    margin-right: 1em;
+    opacity: 1;
+}
