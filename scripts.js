@@ -28,9 +28,11 @@ function mapping(){
       accessToken: 'sk.eyJ1IjoibGFmaXNoZXJnaXMiLCJhIjoiY2t2OXJ4dnV1YTY2ZjJwbnpjM3BxbWRnYiJ9.CW4oaT94TkbelBF0Fj4rJw',
   }).addTo(map);
 
+//Thanks to leaflet for guidance starts here https://leafletjs.com/examples/choropleth/
+
   L.geoJson(ctData).addTo(map);
 
-  function getColor(d) {
+  function colorization(d) {
       return d > 6.693878 ? '#2c7bb6' :
             d > 4.930006  ? '#abd9e9' :
             d > 3.877140  ? '#ffffbf' :
@@ -38,9 +40,9 @@ function mapping(){
                             '#d7191c';
   }
 
-  function style(feature) {
+  function chloroPaint(feature) {
       return {
-          fillColor: getColor(feature.properties.Vac_rate),
+          fillColor: colorization(feature.properties.Vac_rate),
           weight: 2,
           opacity: 1,
           color: 'white',
@@ -67,7 +69,7 @@ function mapping(){
 
   var geojson;
 
-  function highlightFeature(e) {
+  function scrollOn(e) {
     var layer = e.target;
     layer.setStyle({
       weight: 5,
@@ -82,27 +84,29 @@ function mapping(){
     info.update(layer.feature.properties);
   }
 
-  function resetHighlight(e) {
+  function scrollOff(e) {
     geojson.resetStyle(e.target);
     info.update();
   }
 
-  function zoomToFeature(e) {
+  function zoomClick(e) {
     map.fitBounds(e.target.getBounds());
   }
 
-  function onEachFeature(feature, layer) {
+  function mouseIntegration(feature, layer) {
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
+        mouseover: scrollOn,
+        mouseout: scrollOff,
+        click: zoomClick
     });
   }
 
   geojson = L.geoJson(ctData, {
-    style: style,
-    onEachFeature: onEachFeature
+    style: chloroPaint,
+    onEachFeature: mouseIntegration
   }).addTo(map);
+
+  // Thanks to leaflet for guidance ends here https://leafletjs.com/examples/choropleth/
 
   var Legend =  new L.Control.Legend({
       position: 'bottomright',
