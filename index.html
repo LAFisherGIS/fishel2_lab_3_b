@@ -14,6 +14,7 @@
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""></script>
    	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<script src= "https://cdn.jsdelivr.net/npm/leaflet-legend@1.0.2/leaflet-legend.min.js"></script>
 	  <script src="scripts.js"></script>
 		<script src="Data/Pierce_CT.js"></script>
 	</head>
@@ -22,12 +23,60 @@
       <!-- The below is a component in the form of lightmode/darkmode selector integrated into this website. Thanks to Rafael Morais for the reference implementation. https://rafael.no/blog/implementing-dark-mode-without-javascript/ https://codepen.io/rafaelsnts/pen/BEzZoX-->
 		    <input type="checkbox" id="lightordark">
 		    <label for="lightordark" class="modeselect">Lightmode/Darkmode</label>
+				<h2>Pierce County Real Estate Considerations</h2>
       <!-- End of lightmode/darkmode HTML-side controls. -->
 		    <div class="pagecontent">
 					<h3>Pierce County Census Tract Level Vacancy Rates</h3>
-					<p>This map provides for the quick lookup of census tract level property vacancy rates throughout Pierce County in Washington, enabling the quick location of census tracts where one might actually be able to find a place to rent, versus ones that are currently packed. Census tracts have been classified into quintiles of equal size according to their vacancy rates.</p>
-        <div id="map"></div>
-		    </div>
+					<p>This map provides for the easy estimation of how easy it would be to find a property available for rental or purchase within the various census tracts of Pierce County Washington, as well as the degree of choice one might experience in these areas. This estimation is facilitated through reference to data which report on the vacancy rates within each separate census tract.</p>
+	        <div id="map"></div>
+					<div id="legend">
+						<ul style="list-style-type:none">
+							<li>
+								<svg width="24" height="24">
+									<rect width="24" height="24" stroke="white" stroke-width="1" fill="white" fill-opacity=".4"/>
+									<rect width="22" height="22" stroke="black" stroke-width="1" fill="#d7191c" fill-opacity=".4"/>
+								</svg>
+								<text>0% - 2.964255% Vacancy</text>
+							</li>
+							<li>
+								<svg width="24" height="24">
+									<rect width="24" height="24" stroke="white" stroke-width="1" fill="white" fill-opacity=".4"/>
+									<rect width="22" height="22" stroke="black" stroke-width="1" fill="#fdae61" fill-opacity=".4"/>
+								</svg>
+								<text>2.964255% - 3.877140% Vacancy</text>
+							</li>
+							<li>
+								<svg width="24" height="24">
+									<rect width="24" height="24" stroke="white" stroke-width="1" fill="white" fill-opacity=".4"/>
+									<rect width="22" height="22" stroke="purple" stroke-width="1" fill="#ffffbf" fill-opacity=".4"/>
+								</svg>
+								<text>3.877140% - 4.930006% Vacancy</text>
+							</li>
+							<li>
+								<svg width="24" height="24">
+									<rect width="24" height="24" stroke="white" stroke-width="1" fill="white" fill-opacity=".4"/>
+									<rect width="22" height="22" stroke="rebeccapurple" stroke-width="1" fill="#abd9e9" fill-opacity=".4"/>
+								</svg>
+								<text>4.930006% - 6.693878% Vacancy</text>
+							</li>
+							<li>
+								<svg width="24" height="24">
+									<rect width="24" height="24" stroke="white" stroke-width="1" fill="white" fill-opacity=".4"/>
+									<rect width="22" height="22" stroke="slateblue" stroke-width="1" fill="#2c7bb6" fill-opacity=".4"/>
+								</svg>
+								<text>6.93878%+ Vacancy</text>
+							</li>
+						</ul>
+					</div>
+					<div id="Informational">
+            <h3>About the Analysis</h3>
+            <p>Census tract polygons were converted from a shapefile to a geojson with only 7.6% of the geometric complexity remaining using <a href="https://mapshaper.org/" target="_blank">Mapshaper</a> and wrapped up as a javascript variable prior to inclusion in the map. Based on their registered vacancy rates, these polygons have then been quantified into five contiguous groups containing equal numbers of polygons (quintiles), and colored according to their vacancy rates on a red to blue scale, with the deepest blue representing the highest amount of vacant units on the market. Data regarding the total numbers of housing units are available by scrolling over a specific census tract, and will appear in the top right corner. If you click on a census tract, you will automatically zoom in and center the map on its center, allowing for more targeted evaluation of its suitability for your needs based on the points of interested located within it.</p>
+          </div>
+					<div id="references">
+							<h2>Data Utilized in This Map</h2>
+							<p>Census Tract Data Provided by Lab Instructor</p>
+				 </div>
+		   </div>
 		</div>
 	</body>
 </html>

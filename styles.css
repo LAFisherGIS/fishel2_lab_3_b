@@ -40,7 +40,6 @@ Mode Selector Styling - This section defines the aesthetic qualities of the chec
   --textchroma: #000000;
   background-color: var(--backgroundchroma);
   color: var(--textchroma);
-  padding-bottom: 3em;
 }
 
 #lightordark:checked ~ .pagecontent{
@@ -70,6 +69,10 @@ div.leaflet-popup-tip {
 .leaflet-control-container .leaflet-top .leaflet-control-zoom a.leaflet-control-zoom-out {
   background-color: var(--backgroundchroma);
   color: var(--textchroma);
+}
+
+#legend {
+  background: var(--backgroundchroma)
 }
 
 #informational {
@@ -166,7 +169,7 @@ a:active{
 }
 
 #map {
-  position: absolute;
+  position: relative;
   width: 99.1vw;
   height: 100vh;
 }
@@ -183,13 +186,16 @@ a:active{
     color: var(--textchroma);
 }
 
-.legend {
-    line-height: 1em;
+#legend {
+  opacity: 0.85;
+  line-height: 0em;
+  border-radius: 0.5em;
+  padding-left: 0em;
+  padding-right: 1.5em ;
+  padding-bottom: 1.5em ;
+  padding-top: 0.125em;
 }
-.legend i {
-    width: 1em;
-    height: 1em;
-    float: left;
-    margin-right: 1em;
-    opacity: 1;
+
+li {
+  padding: 0.25em
 }
