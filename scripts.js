@@ -53,13 +53,13 @@ function mapping(){
 
   var info = L.control();
 
-  info.onAdd = function (map) {
+  info.onAdd = function infoDiv(map) {
       this._div = L.DomUtil.create('div', 'info');
       this.update();
       return this._div;
   };
 
-  info.update = function (props) {
+  info.update = function infoFill(props) {
       this._div.innerHTML = '<h4>Pierce Census Tract Vacancy</h4>' +  (props ?
           '<b>' + 'Tract Number: ' + props.NAME20 + '</b><br />' + props.TotalHousi + ' Units Total' + '<br />' + props.HousingVac + ' Units Empty' + '<br />' + props.Vac_rate + ' % Vacant'
           : 'Hover over a census tract.');
