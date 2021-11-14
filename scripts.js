@@ -67,8 +67,6 @@ function mapping(){
 
   info.addTo(map);
 
-  var geojson;
-
   function scrollOn(e) {
     var layer = e.target;
     layer.setStyle({
@@ -101,7 +99,7 @@ function mapping(){
     });
   }
 
-  geojson = L.geoJson(ctData, {
+  var geojson = L.geoJson(ctData, {
     style: chloroPaint,
     onEachFeature: mouseIntegration
   }).addTo(map);
